@@ -8,10 +8,17 @@ let win
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({width: 400, height: 250})
+  mainWindow = new BrowserWindow({
+    width: 400,
+    height: 250,
+    'min-width': 400,
+    'min-height': 250,
+    'accept-first-mouse': true,
+    'title-bar-style': 'hidden'
+  });
 
   // and load the index.html of the app.
-  win.loadURL(url.format({
+  mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, '/app/index.html'),
     protocol: 'file:',
     slashes: true
@@ -21,7 +28,7 @@ function createWindow () {
   // win.webContents.openDevTools()
 
   // Emitted when the window is closed.
-  win.on('closed', () => {
+  mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
