@@ -2,6 +2,9 @@
 
 Word is a desktop app that will use the Webster API to present its word of the day on the users desktop.
 
+## Screen Shot
+![alt text](http://i.imgur.com/LNMhsAA.png "Word app on my desktop")
+
 ## Code Example
 
 soon...
