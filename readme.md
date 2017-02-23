@@ -7,7 +7,27 @@ Word is a desktop app that will use the Webster API to present its word of the d
 
 ## Code Example
 
-soon...
+```javascript
+this.url = "https://www.merriam-webster.com/word-of-the-day"
+this.getURL = function(){
+  var web = new XMLHttpRequest();
+  // GET request, ENDPOINT to hit
+  web.open('GET', this.url);
+  // Sending the GET request to ENDPOINT
+  web.send();
+  // Prepare a function to handle the response
+  web.onreadystatechange = processRequest;
+  // Function to handle the response from the ENDPOINT
+  function processRequest(e){
+    // A 4 readyState means it is DONE and
+    // a 200 status means it finished loading the page succesfully
+    if (web.readyState == 4 && web.status == 200) {
+      // return the response from the request
+      // we made to the ENDPOINT
+      parseResponse(web.responseText);
+    }
+  }
+```
 
 ## Motivation
 
