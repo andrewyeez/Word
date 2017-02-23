@@ -37,8 +37,7 @@ To practice my knowledge in JavaScript and to get familiar with all the technolo
 soon...
 
 ## API Reference
-
-Webster API (examples soon...)
+![alt text](http://i.imgur.com/b83sEy5.png "API reference")
 
 ## Tests
 
