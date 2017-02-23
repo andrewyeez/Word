@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', function () {
       // Set variables to easily manipulate to change the word
       this.base = "http://www.dictionaryapi.com/api/v1/references/collegiate/xml/";
       this.word = "harm";
+      // oh wells, personal project so ill just put my key out there :p
       this.key = "?key=2e472083-b6a7-4dce-9c89-7423d29b54f4";
-
-      this.getUrl = function(){
-        return this.base+this.word+this.key;
-      }
-
-      this.getDefaultWebsterWord = function(){
+      this.getUrl = function(){ return this.base+this.word+this.key; }
+      this.updateWord = function(word){ this.word = word; }
+      this.getWebsterWord = function(word){
+        // if user passed a value for word, update word
+        if(word){ this.updateWord(word); }
         // XMLHttpRequest object to hit the webster api
         var web = new XMLHttpRequest();
         // GET request, ENDPOINT to hit
@@ -59,12 +59,9 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(value.getElementsByTagName("def")[0].getElementsByTagName("dt")[0].textContent);
           }
         }
-
       }
-
-
     }
 
     var webster = new WebsterAPI();
-    webster.getDefaultWebsterWord();
+    webster.getWebsterWord("cry");
 });
