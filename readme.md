@@ -1,6 +1,6 @@
 ## Synopsis
 
-Word is a desktop app that will output the Word of the Day based on webpage on https://www.merriam-webster.com/word-of-the-day/ There is also code here that will use the dictionary API to find the definition of a user input word but I didn't implement it on the front end. Maybe another day...
+Word is a desktop app that will output the Word of the Day based on webpage on https://www.merriam-webster.com/word-of-the-day/ There is also code here that will use the dictionary API to find the definition of a user input word but I didn't implement it on the front end. Maybe another day... Need to clean up the code, find ways to keep it DRY and easily tested, smaller functions.
 
 ## Screen Shot
 ![alt text](http://i.imgur.com/LNMhsAA.png "Word app on my desktop")
