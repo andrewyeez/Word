@@ -22,8 +22,7 @@ this.getURL = function(){
     // A 4 readyState means it is DONE and
     // a 200 status means it finished loading the page succesfully
     if (web.readyState == 4 && web.status == 200) {
-      // return the response from the request
-      // we made to the ENDPOINT
+      // parse the response to output easily on the frontend
       parseResponse(web.responseText);
     }
   }
