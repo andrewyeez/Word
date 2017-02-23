@@ -87,32 +87,24 @@ document.addEventListener('DOMContentLoaded', function () {
           var parser = new DOMParser();
           // returns a DOM object
           xmlDoc = parser.parseFromString(response,"text/html");
-          console.log(xmlDoc.getElementsByClassName("word-and-pronunciation")[0].firstElementChild.innerHTML);
-          console.log(xmlDoc.getElementsByClassName("word-attributes")[0].firstElementChild.innerHTML);
-          // output definitions
-          console.log()
           var l = xmlDoc.getElementsByClassName("wod-definition-container")[0].children.length;
           var childNodes = xmlDoc.getElementsByClassName("wod-definition-container")[0].children;
-          var count = 0;
-          console.log('HERE ARE DEFINITIONS');
+          var count = 1;
+          function pElement(text){
+            var p = document.createElement("p");
+            p.innerHTML = text;
+            return p;
+          }
+          document.getElementsByClassName("word")[0].innerHTML = xmlDoc.getElementsByClassName("word-and-pronunciation")[0].firstElementChild.innerHTML;
+          document.getElementsByClassName("type")[0].innerHTML = xmlDoc.getElementsByClassName("word-attributes")[0].firstElementChild.innerHTML;
           while(childNodes[count].textContent != 'Examples'){
-            console.log(childNodes[count].textContent)
+            document.getElementsByClassName("definition-container")[0].appendChild(pElement(childNodes[count].textContent));
             count++;
           }
-          console.log('HERE ARE EXAMPLES');
+          count++;
           while(count < l){
-            console.log(childNodes[count].textContent)
+            document.getElementsByClassName("example-container")[0].appendChild(pElement(childNodes[count].textContent));
             count++;
-          }
-        }
-        function displayResponse(xmlEntryObj){
-          // Ititarate each 'entry' from the DOM
-          for(i = 0; i < xmlEntryObj.length; i++){
-              ShowResults();
-          }
-          // Function that will do something with each entry object
-          function ShowResults(value) {
-
           }
         }
       }
