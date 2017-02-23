@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function WebsterWOD(){
-      this.url = "https://www.merriam-webster.com/word-of-the-day/distaff-2017-02-21"
+      this.url = "https://www.merriam-webster.com/word-of-the-day"
       this.getURL = function(){
         var web = new XMLHttpRequest();
         // GET request, ENDPOINT to hit
@@ -90,26 +90,41 @@ document.addEventListener('DOMContentLoaded', function () {
           var l = xmlDoc.getElementsByClassName("wod-definition-container")[0].children.length;
           var childNodes = xmlDoc.getElementsByClassName("wod-definition-container")[0].children;
           var count = 1;
-          function pElement(text){
-            var p = document.createElement("p");
-            p.innerHTML = text;
-            return p;
-          }
-          document.getElementsByClassName("word")[0].innerHTML = xmlDoc.getElementsByClassName("word-and-pronunciation")[0].firstElementChild.innerHTML;
-          document.getElementsByClassName("type")[0].innerHTML = xmlDoc.getElementsByClassName("word-attributes")[0].firstElementChild.innerHTML;
+          var word = xmlDoc.getElementsByClassName("word-and-pronunciation")[0].firstElementChild.innerHTML;
+          var type = xmlDoc.getElementsByClassName("word-attributes")[0].firstElementChild.innerHTML;
+          document.getElementsByClassName("word")[0].innerHTML = upperCaseFirstLetter(word);
+          document.getElementsByClassName("type")[0].innerHTML = type;
+          document.getElementsByClassName("definition")[0].innerHTML = "Definition:";
+          // document.getElementsByClassName("example")[0].innerHTML = "Example:";
           while(childNodes[count].textContent != 'Examples'){
-            document.getElementsByClassName("definition-container")[0].appendChild(pElement(childNodes[count].textContent));
+            //document.getElementsByClassName("definition-container")[0].appendChild(pElement(childNodes[count].textContent));
+            defToParagraphs(childNodes[count].textContent);
             count++;
           }
-          count++;
-          while(count < l){
-            document.getElementsByClassName("example-container")[0].appendChild(pElement(childNodes[count].textContent));
-            count++;
-          }
+          // count++;
+          // while(count < l){
+          //   document.getElementsByClassName("example-container")[0].appendChild(pElement(childNodes[count].textContent));
+          //   count++;
+          // }
         }
       }
     }
 
     var webster = new WebsterWOD();
     webster.getURL();
+
+    function upperCaseFirstLetter(string){
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    function defToParagraphs(string){
+      var str = string.split(":");
+      str.forEach(function(element){
+        document.getElementsByClassName("definition-container")[0].appendChild(pElement(element));
+      });
+    }
+    function pElement(text){
+      var p = document.createElement("p");
+      p.innerHTML = text;
+      return p;
+    }
 });
