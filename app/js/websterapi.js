@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
       this.base = "http://www.dictionaryapi.com/api/v1/references/collegiate/xml/";
       this.word = "harm";
       // oh wells, personal project so ill just put my key out there :p
-      this.key = "?key=2e472083-b6a7-4dce-9c89-7423d29b54f4";
+      // this.key = put key here
       this.getUrl = function(){ return this.base+this.word+this.key; }
       this.updateWord = function(word){ this.word = word; }
       this.getWebsterWord = function(word){
