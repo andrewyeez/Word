@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', function () {
           var word = xmlDoc.getElementsByClassName("word-and-pronunciation")[0].firstElementChild.innerHTML;
           var type = xmlDoc.getElementsByClassName("word-attributes")[0].firstElementChild.innerHTML;
           document.getElementsByClassName("word")[0].innerHTML = upperCaseFirstLetter(word);
-          document.getElementsByClassName("type")[0].innerHTML = type;
-          document.getElementsByClassName("definition")[0].innerHTML = "Definition:";
+          document.getElementsByClassName("type")[0].innerHTML = "("+type+")";
+          // document.getElementsByClassName("definition")[0].innerHTML = "Definition:";
           // document.getElementsByClassName("example")[0].innerHTML = "Example:";
           while(childNodes[count].textContent != 'Examples'){
             //document.getElementsByClassName("definition-container")[0].appendChild(pElement(childNodes[count].textContent));
@@ -117,10 +117,18 @@ document.addEventListener('DOMContentLoaded', function () {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
     function defToParagraphs(string){
-      var str = string.split(":");
-      str.forEach(function(element){
-        document.getElementsByClassName("definition-container")[0].appendChild(pElement(element));
-      });
+      if(string[0] == ":"){
+        var str = string.split(":");
+        document.getElementsByClassName("definition-container")[0].appendChild(pElement(str[1]));
+      }
+      if(string[0] == "1"){
+        var str = string.split(":");
+        document.getElementsByClassName("definition-container")[0].appendChild(pElement(str[1]));
+      }
+
+      // str.forEach(function(element){
+      //   document.getElementsByClassName("definition-container")[0].appendChild(pElement(element));
+      // });
     }
     function pElement(text){
       var p = document.createElement("p");
