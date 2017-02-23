@@ -17,3 +17,9 @@ body{
     -o-background-size: cover;
     background-size: cover;
 }
+body > .word-container, body > .definition-container {
+  text-align: center;
+}
+body > .word-container > .word {
+  font-size: 4em;
+}

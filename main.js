@@ -9,10 +9,10 @@ let win
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 400,
-    height: 250,
-    'min-width': 400,
-    'min-height': 250,
+    width: 500,
+    height: 275,
+    'min-width': 500,
+    'min-height': 275,
     'accept-first-mouse': true,
     'title-bar-style': 'hidden'
   });
