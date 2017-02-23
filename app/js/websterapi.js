@@ -62,6 +62,62 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    var webster = new WebsterAPI();
-    webster.getWebsterWord("cry");
+    function WebsterWOD(){
+      this.url = "https://www.merriam-webster.com/word-of-the-day/distaff-2017-02-21"
+      this.getURL = function(){
+        var web = new XMLHttpRequest();
+        // GET request, ENDPOINT to hit
+        web.open('GET', this.url);
+        // Sending the GET request to ENDPOINT
+        web.send();
+        // Prepare a function to handle the response
+        web.onreadystatechange = processRequest;
+        // Function to handle the response from the ENDPOINT
+        function processRequest(e){
+          // A 4 readyState means it is DONE and
+          // a 200 status means it finished loading the page succesfully
+          if (web.readyState == 4 && web.status == 200) {
+            // return the response from the request
+            // we made to the ENDPOINT
+            parseResponse(web.responseText);
+          }
+        }
+        function parseResponse(response){
+          // create a DOMParser object to parse the response
+          var parser = new DOMParser();
+          // returns a DOM object
+          xmlDoc = parser.parseFromString(response,"text/html");
+          console.log(xmlDoc.getElementsByClassName("word-and-pronunciation")[0].firstElementChild.innerHTML);
+          console.log(xmlDoc.getElementsByClassName("word-attributes")[0].firstElementChild.innerHTML);
+          // output definitions
+          console.log()
+          var l = xmlDoc.getElementsByClassName("wod-definition-container")[0].children.length;
+          var childNodes = xmlDoc.getElementsByClassName("wod-definition-container")[0].children;
+          var count = 0;
+          console.log('HERE ARE DEFINITIONS');
+          while(childNodes[count].textContent != 'Examples'){
+            console.log(childNodes[count].textContent)
+            count++;
+          }
+          console.log('HERE ARE EXAMPLES');
+          while(count < l){
+            console.log(childNodes[count].textContent)
+            count++;
+          }
+        }
+        function displayResponse(xmlEntryObj){
+          // Ititarate each 'entry' from the DOM
+          for(i = 0; i < xmlEntryObj.length; i++){
+              ShowResults();
+          }
+          // Function that will do something with each entry object
+          function ShowResults(value) {
+
+          }
+        }
+      }
+    }
+
+    var webster = new WebsterWOD();
+    webster.getURL();
 });
