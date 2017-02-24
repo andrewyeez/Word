@@ -33,6 +33,16 @@ document.addEventListener('DOMContentLoaded', function () {
     // definitions
     appendToDef: function (string) {
       if (string[0] == ":" || string[0] == "1" ) {
+
+
+    var webster = new WebsterWOD();
+    webster.getURL();
+
+    function upperCaseFirstLetter(string){
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    function defToParagraphs(string){
+      if(string[0] == ":"){
         var str = string.split(":");
         var element = this.elementP(str[1]);
         document.getElementsByClassName("definition-container")[0].appendChild(element);
