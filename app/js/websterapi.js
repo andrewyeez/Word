@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   function wordApp () {
     url = "https://www.merriam-webster.com/word-of-the-day";
-    this.httpGET = function () {
+    this.begin = function () {
       var http = new XMLHttpRequest();
       http.open('GET', url);
       http.send();
@@ -65,5 +65,5 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var w = new wordApp();
-  w.httpGET();
+  w.begin();
 });
