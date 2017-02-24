@@ -68,7 +68,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var web = new XMLHttpRequest();
         // GET request, ENDPOINT to hit
         web.open('GET', this.url);
-        web.setRequestHeader('Access-Control-Allow-Origin', '*');
+        //web.setRequestHeader('Access-Control-Allow-Origin', '*');
+        web.setRequestHeader('Access-Control-Allow-Headers:*');
         // Sending the GET request to ENDPOINT
         web.send();
         // Prepare a function to handle the response
