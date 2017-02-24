@@ -19,22 +19,39 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
     function mainDisplay (xmlDoc) {
-      var count = 1;
-      var l = xmlDoc.getElementsByClassName("wod-definition-container")[0].children.length;
-      var childNodes = xmlDoc.getElementsByClassName("wod-definition-container")[0].children;
+      outputWord(xmlDoc);
+      outputWordType(xmlDoc);
+      outputDefinition(xmlDoc);
+    }
+    //
+    // Display Word
+    //
+    function outputWord (xmlDoc) {
       var word = xmlDoc.getElementsByClassName("word-and-pronunciation")[0].firstElementChild.innerHTML;
-      var type = xmlDoc.getElementsByClassName("word-attributes")[0].firstElementChild.innerHTML;
       document.getElementsByClassName("word")[0].innerHTML = upperCaseFirstLetter(word);
-      document.getElementsByClassName("type")[0].innerHTML = "("+type+")";
-      while(childNodes[count].textContent != 'Examples'){
-        appendToDescription(childNodes[count].textContent);
-        count++;
-      }
     }
     function upperCaseFirstLetter (string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
-    function appendToDescription (string) {
+    //
+    // Display Word Type
+    //
+    function outputWordType (xmlDoc) {
+      var type = xmlDoc.getElementsByClassName("word-attributes")[0].firstElementChild.innerHTML;
+      document.getElementsByClassName("type")[0].innerHTML = "("+type+")";
+    }
+    //
+    // Display Word Definition
+    //
+    function outputDefinition (xmlDoc) {
+      var count = 1;
+      var childNodes = xmlDoc.getElementsByClassName("wod-definition-container")[0].children;
+      while(childNodes[count].textContent != 'Examples'){
+        appendToDefinition(childNodes[count].textContent);
+        count++;
+      }
+    }
+    function appendToDefinition (string) {
       if(string[0] == ":" || string[0] == "1" ){
         var str = string.split(":");
         document.getElementsByClassName("definition-container")[0].appendChild(createPElement(str[1]));
