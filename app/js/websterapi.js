@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return false;
     }
   };
+  
   // helpers is an object that will have functions to do outputs and string modifiers
   var helpers = {
     // turns the string into an array and output the definitions for the WOD
